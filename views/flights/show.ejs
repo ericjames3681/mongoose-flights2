@@ -1,0 +1,85 @@
+<%- include('../partials/header') %>
+
+<h1>Single Flight</h1>
+    <fieldset>
+        <legend>Flight Details</legend>
+        <table id="list">
+            <thead>
+            <tr>
+              <th>Airline</th>
+              <th>Flight Number</th>
+              <th>Departs</th>
+            </tr>
+            </thead>
+            <br>
+          <tbody>
+              <tr>
+                <td><%= flight.airline %></td>
+                <td><%= flight.flightNo %></td>
+                <td><%= flight.departs %></td>
+              </tr>
+          </tbody>
+        </table>
+        <br><br>
+        <h2>Tickets</h2>
+          <ul>
+            <% tickets.forEach(function(t) {%>
+              <li>Seat: <%=t.seat %> - Price: <%= t.price %></li>
+          <% }) %>
+          </ul>
+          <h3>Purchase Tickets</h3>
+
+          <form action="/flights/<%= flight._id %>/tickets" method="POST" autocomplete="off">
+                  <label for="ticket">Seat: </label>
+                  <input type="text" name="seat" required pattern="[A-F][1-9]\d?">
+                  <label for="ticket">Price: </label>
+                  <input type="number" name="price">
+                  <button type="submit" value="Add Ticket">SUBMIT</button>
+          </form> 
+        <br><br>
+
+        <br><br>
+        <h2>Destinations</h2>
+        <% if (flight.destinations.length) { %>
+          <table>
+            <thead>
+              <tr>
+                <th>Airport</th>
+                <th>Arrival Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% flight.destinations.forEach(function(d) { %>
+                <tr>
+                  <td><%= d.airport %></td>
+                  <td><%- d.arrival && new Date(d.arrival).toLocaleDateString() %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+            <% } else { %>
+              <h3>No Destinations Yet</h3>
+              <% } %>
+              <form id="create-form" action="/flights/<%= flight._id %>/destinations" method="POST">
+                <label>Add Airport: </label>
+                <select name="airport" id="airline">
+                  <option value="AUS">Austin</option> 
+                  <option value="DFW">Dallas/Fort Worth</option> 
+                  <option value="DEN" selected>Denver</option> 
+                  <option value="LAX">Los Angeles</option>
+                  <option value="SAN">San Diego</option>  
+                </select> 
+                <br>
+                <label>Add Arrival:  </label>
+                  <input type="Date" name="arrival" id="flight">
+                <button type="submit" value="Add Destination">SUBMIT</button>
+              </form>
+          </fieldset>
+                
+                
+          
+  <%- include('../partials/footer') %>
+              
+
+
+                

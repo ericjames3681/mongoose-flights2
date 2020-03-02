@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#show-page *, #airline * {
+  color: lightblue;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 4rem;
+}
+
+#show-page div:nth-child(even) {
+  font-weight: bold;
+}

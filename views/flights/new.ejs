@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+    <h1>Create New Flight</h1>
+    <form action="/flights" method="POST" autocomplete="off">
+        <fieldset> 
+            <legend>Flight Details</legend>
+            <label for="flight">Airline: </label>
+            <input type="text" name="airline" id="flight">
+            <label for="flight">Flight Number: </label>
+            <input type="number" name="flightNo" id="flight">
+            <label for="flight">Departs: </label>
+            <input type="Date" name="departs" id="flight">
+            <button type="submit" href="/flights/">SUBMIT</button>
+        </fieldset>
+    </form> 
+
+<%- include('../partials/footer') %>
